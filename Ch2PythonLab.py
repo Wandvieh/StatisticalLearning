@@ -113,7 +113,7 @@ print("Selecting submatrices again using meshes:\n", m[idx_bool])
 idx_mixed = np.ix_([0,1],o)
 print("The same, but with a different way of creating the mesh:\n", m[idx_bool])
 
-# %% Working with Datasets
+# %% Working with DataFrames
 import pandas as pd
 #Auto = pd.read_csv('Auto.csv')
 Auto = pd.read_csv('Auto.data', na_values=['?'], delim_whitespace=True)
@@ -167,7 +167,7 @@ for value, weight in zip([2,   3,   19 ],
     total += weight * value
 print('Weighted average is: {0}'.format(total))
 
-# %% More on formatting Strings
+# %% More on formatting Strings (percentage of missing entries)
 rng = np.random.default_rng(1)
 A = rng.standard_normal((127, 5))
 print(A)
@@ -198,7 +198,7 @@ fig, axes = subplots(ncols=3, figsize=(15, 5))
 Auto.plot.scatter('horsepower', 'mpg', ax=axes[1])
 print("You can also access the columns of a dataframe as attributes!\n", Auto.horsepower)
 
-# %% Visualizations on categorical data (box plot, histogram)
+# %% Visualizations on categorical data (box plot, histogram) (changing data types)
 Auto.cylinders = pd.Series(Auto.cylinders, dtype=int)
 print("Data Type of cylinders:", Auto.cylinders.dtype)
 print("First, we change the numerical value of cylinder to categorical (since it only has 5 possible values).")
