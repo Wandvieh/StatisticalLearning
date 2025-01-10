@@ -118,7 +118,7 @@ final = allvars + [('Income', 'Advertising'),
 
 y = Carseats['Sales']
 X = MS(final).fit_transform(Carseats) # it handles categorical values automatically!
-print(X)
+print("X\n", X)
 model = sm.OLS(y, X)
 summarize(model.fit())
 
