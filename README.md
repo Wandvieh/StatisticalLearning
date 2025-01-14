@@ -6,8 +6,20 @@ All resources are also available at [statlearning.com](statlearning.com).
 Current status:
 - [x] Chapter 1 - Introduction
 - [x] Chapter 2 - Statistical Learning
+  - Prediction Accuracy vs. Model Interpretability
+  - Supervised vs. unsupervised
+  - Regression vs. Classification
 - [x] Chapter 3 - Linear Regression
+  - Simple Linear Regression
+  - Multiple Linear Regression
+  - Qualitative Predictors
+  - Extensions
 - [ ] Chapter 4 - Classification
+  - (Multiple) Logistic Regression
+  - Linear Discriminant Analysis
+  - Quadratic Discriminant Analysis
+  - Naive Bayes
+  - Poisson Regression
 - [ ] Chapter 5 - Resampling Methods
 - [ ] Chapter 6 - Linear Model Selection and Regularization
 - [ ] Chapter 7 - Moving Beyond Linearity
