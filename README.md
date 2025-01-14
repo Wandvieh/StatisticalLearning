@@ -1,7 +1,9 @@
 # StatisticalLearning
-My workspace for working through the "Introduction to Statistical Learning" book. Website: [statlearning.com](statlearning.com)
+My workspace for working through the "Introduction to Statistical Learning" course and corresponding book.
 
-All resources are also available at [statlearning.com](statlearning.com).
+Course website: [edx.org](https://www.edx.org/learn/python/stanford-university-statistical-learning-with-python)
+
+All resources are also available at the book's website: [statlearning.com](statlearning.com)
 
 Current status:
 - [x] Chapter 1 - Introduction
