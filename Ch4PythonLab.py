@@ -189,3 +189,116 @@ logit_labels = np.where(logit_pred[:,1]>0.25, 'Yes', 'No')
 confusion_table(logit_labels, y_test)
 print(9/(20+9)) # 31% correct in its yes predictions!
 # %% Linear and Poisson Regression on the Bikeshare Data
+Bike = load_data('Bikeshare')
+print(Bike.shape, Bike.columns)
+
+# %% First: Linear Regression
+X = MS(['mnth',
+        'hr',
+        'workingday',
+        'temp',
+        'weathersit']).fit_transform(Bike)
+Y = Bike['bikers']
+M_lm = sm.OLS(Y, X).fit()
+print(summarize(M_lm))
+
+# mnth[Feb] is 6.8.
+# This means that relative to the JANUARY amount, in Feb there are 6.8 more riders.
+# Difference with another method see below
+
+# %% Another Linear Regression fit, categorical values are handled differently
+hr_encode = contrast('hr', 'sum')
+mnth_encode = contrast('mnth', 'sum')
+X2 = MS([mnth_encode,
+         hr_encode,
+         'workingday',
+         'temp',
+         'weathersit']).fit_transform(Bike)
+M2_lm = sm.OLS(Y, X2).fit()
+S2 = summarize(M2_lm)
+print(S2)
+
+# What's the difference?
+# mnth[Jan] has a coefficient estimate of -46.
+# This means that relative to the YEARLY AVERAGE, in Jan there 46 fewer riders.
+# What about Dec that isn't coded?
+# The coeff est for Dec is the negative sum of all other 11 level estimates!
+# Together the all sum to 0 and are the yearly average
+
+
+# %% Despite the differences, the outcome is the same
+print(np.sum((M_lm.fittedvalues - M2_lm.fittedvalues)**2)) # sum of squared differences basically zero
+print(np.allclose(M_lm.fittedvalues, M2_lm.fittedvalues))
+
+# %% Plotting a line chart over a year
+# Getting the coefficients for Jan - Nov
+coef_month = S2[S2.index.str.contains('mnth')]['coef']
+print(coef_month)
+# appending Dec
+months = Bike['mnth'].dtype.categories
+coef_month = pd.concat([
+      coef_month,
+      pd.Series([-coef_month.sum()],
+                 index=['mnth[Dec]'])
+])
+print(coef_month)
+
+fig_month, ax_month = subplots(figsize=(8,8))
+x_month = np.arange(coef_month.shape[0])
+ax_month.plot(x_month, coef_month, marker='o', ms=10)
+ax_month.set_xticks(x_month)
+ax_month.set_xticklabels([l[5] for l in coef_month.index], fontsize=20)
+ax_month.set_xlabel('Month', fontsize=20)
+ax_month.set_ylabel('Coefficient', fontsize=20)
+
+# %% Plotting a line chart over hours of the day
+coef_hr = S2[S2.index.str.contains('hr')]['coef']
+coef_hr = coef_hr.reindex(['hr[{0}]'.format(h) for h in range(23)])
+coef_hr = pd.concat([coef_hr,
+                     pd.Series([-coef_hr.sum()], index=['hr[23]'])
+                    ])
+
+fig_hr, ax_hr = subplots(figsize=(8,8))
+x_hr = np.arange(coef_hr.shape[0])
+ax_hr.plot(x_hr, coef_hr, marker='o', ms=10)
+ax_hr.set_xticks(x_hr[::2])
+ax_hr.set_xticklabels(range(24)[::2], fontsize=20)
+ax_hr.set_xlabel('Hour', fontsize=20)
+ax_hr.set_ylabel('Coefficient', fontsize=20)
+# %% Second: Poisson Regression
+# very little change except for a different keyword
+M_pois = sm.GLM(Y, X2, family=sm.families.Poisson()).fit()
+S_pois = summarize(M_pois)
+# adding the Dec and 23rd hour
+coef_month = S_pois[S_pois.index.str.contains('mnth')]['coef']
+coef_month = pd.concat([coef_month,
+                        pd.Series([-coef_month.sum()],
+                                   index=['mnth[Dec]'])])
+coef_hr = S_pois[S_pois.index.str.contains('hr')]['coef']
+coef_hr = pd.concat([coef_hr,
+                     pd.Series([-coef_hr.sum()],
+                     index=['hr[23]'])])
+# and again the plotting (months and hours are again to be interpreted relative to their mean)
+fig_pois, (ax_month, ax_hr) = subplots(1, 2, figsize=(16,8))
+ax_month.plot(x_month, coef_month, marker='o', ms=10)
+ax_month.set_xticks(x_month)
+ax_month.set_xticklabels([l[5] for l in coef_month.index], fontsize=20)
+ax_month.set_xlabel('Month', fontsize=20)
+ax_month.set_ylabel('Coefficient', fontsize=20)
+ax_hr.plot(x_hr, coef_hr, marker='o', ms=10)
+ax_hr.set_xticklabels(range(24)[::2], fontsize=20)
+ax_hr.set_xlabel('Hour', fontsize=20)
+ax_hr.set_ylabel('Coefficient', fontsize=20)
+# %% Comparing the fitted values
+fig, ax = subplots(figsize=(8,8))
+ax.scatter(M2_lm.fittedvalues,
+            M_pois.fittedvalues,
+            s=20)
+ax.set_xlabel('Linear Regression Fit', fontsize=20)
+ax.set_ylabel('Poisson Regression Fit', fontsize=20)
+ax.axline([0,0], c='black', linewidth=3, linestyle='--', slope=1)
+# If the results were exactly the same, the points would only be diagonal
+# Here, Poission predictions are larger for very low and very high levels of ridership
+# Linear Regression predictions are larger for the middle part 
+
+# %%
