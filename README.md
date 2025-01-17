@@ -16,13 +16,15 @@ Current status:
   - Multiple Linear Regression
   - Qualitative Predictors
   - Extensions
-- [ ] Chapter 4 - Classification
+- [x] Chapter 4 - Classification
   - (Multiple) Logistic Regression
   - Linear Discriminant Analysis
   - Quadratic Discriminant Analysis
   - Naive Bayes
   - Poisson Regression
 - [ ] Chapter 5 - Resampling Methods
+  - Cross-validation
+  - Bootstrap
 - [ ] Chapter 6 - Linear Model Selection and Regularization
 - [ ] Chapter 7 - Moving Beyond Linearity
 - [ ] Chapter 8 - Tree-Based Methods
