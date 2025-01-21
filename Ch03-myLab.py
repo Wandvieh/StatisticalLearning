@@ -17,7 +17,7 @@ dir()
 # %% load the data
 Boston = load_data("Boston")
 print(Boston.shape)
-# %% fitting a simple model
+# %% fitting a simple linear regression model
 X = pd.DataFrame({'intercept': np.ones(Boston.shape[0]),
                   'lstat': Boston['lstat']})
 print(X.info())

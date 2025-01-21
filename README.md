@@ -22,7 +22,7 @@ Current status:
   - Quadratic Discriminant Analysis
   - Naive Bayes
   - Poisson Regression
-- [ ] Chapter 5 - Resampling Methods
+- [x] Chapter 5 - Resampling Methods
   - Cross-validation
   - Bootstrap
 - [ ] Chapter 6 - Linear Model Selection and Regularization
