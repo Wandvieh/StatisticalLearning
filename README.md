@@ -26,6 +26,9 @@ Current status:
   - Cross-validation
   - Bootstrap
 - [ ] Chapter 6 - Linear Model Selection and Regularization
+  - Best-subset Selection
+  - Shrinkage Methods
+  - Dimension Reduction Methods
 - [ ] Chapter 7 - Moving Beyond Linearity
 - [ ] Chapter 8 - Tree-Based Methods
 - [ ] Chapter 9 - Support Vector Machines
