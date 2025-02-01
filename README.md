@@ -30,6 +30,10 @@ Current status:
   - Shrinkage Methods
   - Dimension Reduction Methods
 - [ ] Chapter 7 - Moving Beyond Linearity
+  - Polynomials and Step Functions
+  - Piecewise Polynomials, Splines, and Smoothing Splines
+  - Local Regression
+  - Generalized Additive Models
 - [ ] Chapter 8 - Tree-Based Methods
 - [ ] Chapter 9 - Support Vector Machines
 - [ ] Chapter 10 - Deep Learning
