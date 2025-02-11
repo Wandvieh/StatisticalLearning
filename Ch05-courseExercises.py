@@ -6,6 +6,7 @@ from ISLP.models import (ModelSpec as MS,
                          summarize)
 import numpy as np
 from sklearn.base import clone
+import random
 
 df = pd.read_csv("5.Py.1.csv")
 print(df)
@@ -21,6 +22,15 @@ print(results.params)
 
 # %% Plotting the data
 df.plot()
+# %%
+
+def create_random_slices():
+    arr =  np.ndarray(shape=1, dtype=int)
+    for i in range(10):
+        x = random.randint(0, 9)
+        arr = np.concatenate((arr, np.r_[slice(x*100, (x+1)*100)]))
+    return arr[1:]
+create_random_slices()
 # %% Using bootstrap to estimate the SE for beta 1
 def alpha_func(D, idx): # dataframe D with columns X and Y
    # returns an estimate for alpha by applying the minimum variance formula to the observations
