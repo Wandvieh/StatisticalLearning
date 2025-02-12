@@ -23,20 +23,25 @@ print(results.params)
 # %% Plotting the data
 df.plot()
 # %%
-
 def create_random_slices():
     arr =  np.ndarray(shape=1, dtype=int)
     for i in range(10):
         x = random.randint(0, 9)
         arr = np.concatenate((arr, np.r_[slice(x*100, (x+1)*100)]))
     return arr[1:]
-create_random_slices()
+print(create_random_slices())
+new_rows = np.r_[slice(100,200), slice(400,500),
+                 slice(100,200), slice(900,1000),
+                 slice(300,400), slice(0,100),
+                 slice(0,100), slice(800,900),
+                 slice(200,300), slice(700,800)]
+print(new_rows)
 # %% Using bootstrap to estimate the SE for beta 1
-def alpha_func(D, idx): # dataframe D with columns X and Y
+"""def alpha_func(D, idx): # dataframe D with columns X and Y
    # returns an estimate for alpha by applying the minimum variance formula to the observations
    cov_ = np.cov(D[['X','Y']].loc[idx], rowvar=False)
    return ((cov_[1,1] - cov_[0,1]) /
-           (cov_[0,0]+cov_[1,1]-2*cov_[0,1]))
+           (cov_[0,0]+cov_[1,1]-2*cov_[0,1]))"""
 
 def boot_SE(func,
             D,
@@ -47,9 +52,7 @@ def boot_SE(func,
     first_, second_ = 0, 0
     n = n or D.shape[0]
     for _ in range(B): # _ as variable is often used when the value of the counter is unimportant
-        idx = rng.choice(D.index,
-                         n,
-                         replace=True)
+        idx = create_random_slices()
         value = func(D, idx)
         first_ += value
         second_ += value**2
