@@ -25,18 +25,27 @@ Current status:
 - [x] Chapter 5 - Resampling Methods
   - Cross-validation
   - Bootstrap
-- [ ] Chapter 6 - Linear Model Selection and Regularization
+- [x] Chapter 6 - Linear Model Selection and Regularization
   - Best-subset Selection
   - Shrinkage Methods
   - Dimension Reduction Methods
-- [ ] Chapter 7 - Moving Beyond Linearity
+- [x] Chapter 7 - Moving Beyond Linearity
   - Polynomials and Step Functions
   - Piecewise Polynomials, Splines, and Smoothing Splines
   - Local Regression
   - Generalized Additive Models
-- [ ] Chapter 8 - Tree-Based Methods
-- [ ] Chapter 9 - Support Vector Machines
-- [ ] Chapter 10 - Deep Learning
-- [ ] Chapter 11 - Survival Analysis and Censored Data
+- [x] Chapter 8 - Tree-Based Methods
+  - Bagging
+  - Boosting
+  - Random Forests
+  - BART
+- [x] Chapter 9 - Support Vector Machines
+- [x] Chapter 10 - Deep Learning
+  - CNNs
+  - RNNs
+- [x] Chapter 11 - Survival Analysis and Censored Data
+  - Kaplan-Meier curve
+  - Log-Rank test
+  - Cox proportional hazards model
 - [ ] Chapter 12 - Unsupervised Learning
 - [ ] Chapter 13 - Multiple Testing
