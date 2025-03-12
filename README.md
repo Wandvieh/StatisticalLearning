@@ -47,5 +47,7 @@ Current status:
   - Kaplan-Meier curve
   - Log-Rank test
   - Cox proportional hazards model
-- [ ] Chapter 12 - Unsupervised Learning
+- [x] Chapter 12 - Unsupervised Learning
+  - Hierarchical Clustering
+  - kMeans
 - [ ] Chapter 13 - Multiple Testing
