@@ -5,7 +5,7 @@ Course website: [edx.org](https://www.edx.org/learn/python/stanford-university-s
 
 All resources are also available at the book's website: [statlearning.com](statlearning.com)
 
-Current status:
+Current status: **DONE**
 - [x] Chapter 1 - Introduction
 - [x] Chapter 2 - Statistical Learning
   - Prediction Accuracy vs. Model Interpretability
