@@ -50,4 +50,6 @@ Current status:
 - [x] Chapter 12 - Unsupervised Learning
   - Hierarchical Clustering
   - kMeans
-- [ ] Chapter 13 - Multiple Testing
+- [x] Chapter 13 - Multiple Testing
+  - Family-Wise Error Rate
+  - False Discovery Rate
